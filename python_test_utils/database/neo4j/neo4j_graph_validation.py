@@ -9,13 +9,13 @@ class Neo4jGraphValidation:
     def __init__(self, graph: Graph):
         self.graph = graph
 
-    def __enter__(self) -> Graph:
+    def __enter__(self):
         """
         Clear the graph at the initiation of the test.
-        :return: The graph instance of the database.
+        :return: The neo4j graph validation instance of the database.
         """
         self.graph.delete_all()
-        return self.graph
+        return self
 
     def setup_objects(self, setup_objects: List[Union[Node, Relationship]]):
         """
@@ -60,7 +60,7 @@ class Neo4jGraphValidation:
         self.graph.delete_all()
 
     @staticmethod
-    def get_graph(host: str, port: int, username: str, password: str) -> Graph:
+    def create_graph(host: str, port: int, username: str, password: str) -> Graph:
         """
         Create a neo4j graph instance that is connected to the given server details
         :param host: The host of the server.
@@ -72,7 +72,7 @@ class Neo4jGraphValidation:
         return Graph(host=host, port=port, auth=(username, password))
 
     @staticmethod
-    def get_neo4j_graph_validation(host: str, port: int, username: str, password: str):
+    def create_neo4j_graph_validation(host: str, port: int, username: str, password: str):
         """
         Create a neo4j graph validation for util helpers with testing neo4j graph database.
         :param host: The host of the server.
@@ -81,5 +81,5 @@ class Neo4jGraphValidation:
         :param password: The password that is used to connect to the server.
         :return: The neo4j graph validation object.
         """
-        graph = Neo4jGraphValidation.get_graph(host=host, port=port, username=username, password=password)
+        graph = Neo4jGraphValidation.create_graph(host=host, port=port, username=username, password=password)
         return Neo4jGraphValidation(graph=graph)
