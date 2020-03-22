@@ -1,5 +1,5 @@
-from test_examples.create_flask_app import create_app
-from api.flask_api.flask_api_validation import FlaskApiValidation
+from python_test_utils.test_examples.create_flask_app import create_app
+from python_test_utils.api.flask_api.flask_api_validation import FlaskApiValidation
 
 
 def test_example_validate_route_existence():
