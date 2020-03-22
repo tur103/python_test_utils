@@ -37,7 +37,7 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Unit test_examples / coverage reports
 htmlcov/
 .tox/
 .nox/
@@ -130,3 +130,6 @@ dmypy.json
 
 # Pycharm
 .idea/
+
+# Pytest cache
+test_examples/.pytest_cache/
