@@ -1,4 +1,5 @@
-from typing import Type
+import pytest
+from typing import Type, Callable, List
 
 from python_test_utils.api.flask_api.flask_api_validation import FlaskApiValidation
 from python_test_utils.mock.mocker import Mocker
@@ -29,3 +30,28 @@ class TestExpansion:
         A validation utils for running neo4j queries.
         """
         return Neo4jGraphValidation
+
+    @staticmethod
+    def validate_function_result(function: Callable, arguments_list: List[dict], expected_result_list: list):
+        """
+        Helper for testing a function with given arguments for the expected result.
+        :param function: THe function that we want to test.
+        :param arguments_list: The list of arguments map to call the function with.
+        :param expected_result_list: The list of expected results corresponding to the arguments list.
+        """
+        for arguments, expected_result in zip(arguments_list, expected_result_list):
+            result = function(**arguments)
+            assert expected_result == result
+
+    @staticmethod
+    def validate_function_exception(function: Callable, arguments_list: List[dict],
+                                    expected_exception_list: List[Type[Exception]]):
+        """
+        Helper for testing a function with given arguments and expecting for an exception to be raised.
+        :param function: THe function that we want to test.
+        :param arguments_list: The list of arguments map to call the function with.
+        :param expected_exception_list: The list of expected exceptions corresponding to the arguments list.
+        """
+        for arguments, expected_exception in zip(arguments_list, expected_exception_list):
+            with pytest.raises(expected_exception=expected_exception):
+                function(**arguments)

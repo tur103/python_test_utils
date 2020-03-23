@@ -1,7 +1,7 @@
 from flask import Flask
 
 
-def create_app():
+def create_app() -> Flask:
     app = Flask(__name__)
 
     @app.route('/', methods=["GET"])
@@ -9,3 +9,10 @@ def create_app():
         return "hello world"
 
     return app
+
+
+def function_to_test(number: int) -> int:
+    if number == 0:
+        raise ValueError
+    else:
+        return number

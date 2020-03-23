@@ -1,6 +1,6 @@
 from flask import Response
 
-from python_test_utils.test_examples.create_flask_app import create_app
+from python_test_utils.test_examples.utils_for_test_examples import create_app
 from python_test_utils.test_expansion import TestExpansion
 
 
