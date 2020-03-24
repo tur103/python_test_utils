@@ -6,6 +6,7 @@ Infrastructure and utilities for testing python apps
 2. Flask API test utils
 3. Mocking test utils 
 4. Neo4j graph database test utils
+5. Sql database test utils
 
 ## Usage
 1. Create a test class

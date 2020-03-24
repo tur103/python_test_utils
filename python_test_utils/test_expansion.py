@@ -4,6 +4,7 @@ from typing import Type, Callable, List
 from python_test_utils.api.flask_api.flask_api_validation import FlaskApiValidation
 from python_test_utils.mock.mocker import Mocker
 from python_test_utils.database.neo4j.neo4j_graph_validation import Neo4jGraphValidation
+from python_test_utils.database.sql.sql_database_validation import SqlDatabaseValidation
 
 
 class TestExpansion:
@@ -30,6 +31,13 @@ class TestExpansion:
         A validation utils for running neo4j queries.
         """
         return Neo4jGraphValidation
+
+    @property
+    def sql_database_validation(self) -> Type[SqlDatabaseValidation]:
+        """
+        A validation utils for running sql queries.
+        """
+        return SqlDatabaseValidation
 
     @staticmethod
     def validate_function_result(function: Callable, arguments_list: List[dict], expected_result_list: list):
